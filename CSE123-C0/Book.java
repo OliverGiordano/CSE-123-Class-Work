@@ -53,8 +53,8 @@ class Book implements Media, Comparable<Book>{
     //   - The the authors as a list of Strings
     // Exceptions:
     //   - None
-    public List<String> getArtists(){          
-        return authors;
+    public List<String> getArtists(){
+        return new ArrayList<String>(authors);
     }
 
     // Behavior:
@@ -112,7 +112,7 @@ class Book implements Media, Comparable<Book>{
             while(content.hasNext()){ 
                 scannerContent.add(content.next());
             }
-        return scannerContent;
+        return new ArrayList<String>(scannerContent);
     }
 
     // Behavior:
@@ -122,9 +122,10 @@ class Book implements Media, Comparable<Book>{
     // Returns:
     //   - Returns a String in the format:
     //     "<title> by [<authors>]: <average rating> [<number of reviews>]"
-    // Exceptions:
     //   - if there are no ratings, the rturn format will look like:
     //     "<title> by [<authors>]"
+    // Exceptions:
+    //   - None
     public String toString(){
         String outputString = ""; 
         outputString += title + " by [";
@@ -150,7 +151,6 @@ class Book implements Media, Comparable<Book>{
     // Returns:
     //   - Returns a postive interger based if the book your comparing two has a lower average
     //     rating and returns a negitive interger if the book has a lower average rating
-    // Exceptions:
     //   - if the rounded difference between the ratings is 0 than, it compares the authors and
     //     returns the a positive interger if author of the book object passed in has a name that 
     //     comes alphabeticly second, if the author of the book object that is passed in has a name
@@ -158,6 +158,8 @@ class Book implements Media, Comparable<Book>{
     //     same, than it returns a positive number if the title of the book passed in is shorter, 
     //     a negitive nnumber if the title of the book passed in is longer, and 0 if the titles are
     //     the same length
+    // Exceptions:
+    //   - None
     public int compareTo(Book book){ 
         if(Math.round(book.getAverageRating() - this.getAverageRating()) != 0){
             return (int)Math.round(book.getAverageRating() - this.getAverageRating());
